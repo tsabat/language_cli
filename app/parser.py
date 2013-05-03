@@ -1,2 +1,2 @@
 def parse(value):
-    return value + 'hi'
+    return 'you typed: ' + value
