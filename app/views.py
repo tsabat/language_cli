@@ -10,21 +10,21 @@ def hello():
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     </head>
     <div id="main">
-        <textarea id="repl" name="code" rows="1" cols="80" ></textarea>
+        Type some code.  Press ctrl+enter to run it.<hr>
+        <textarea id="repl" name="code" rows="25" cols="80" ></textarea>
     </div>
     </html>
 
     <script type="text/javascript">
         $('#repl').bind('keypress', function(e) {
-            if (e.keyCode == 13) {
+            if (e.ctrlKey && (e.keyCode == 13)) {
                 $.ajax({
                     url: '/parse',
                     data: {lines: $("#repl").val()},
                     success: function(rslt) {
-                        $("#main").append('>'+$("#repl").val());
+                        $("#main").append('<pre>>'+$("#repl").val() + '</pre>');
                         $("#main").append(rslt);
                         var el = $("#repl");
-                        el.val('');
                         el.appendTo("#main");
                         el.focus();
                         console.log(rslt);
